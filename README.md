@@ -1,7 +1,7 @@
 ***Development work in progress***
 
-Spring boot app with basic CRUD operations.
-Works with H2 in-memory database.
-REST API requests can be done via Swagger.
+Simple Spring Boot app with basic CRUD operations./n
+Works with H2 in-memory database./n
+REST API requests can be submitted via Swagger./n
 
 Fronted part available here: https://github.com/GuntarsK/Car-rent-frontend
