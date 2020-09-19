@@ -31,6 +31,9 @@ public class CustomerDTO extends DtoHolder {
     @JsonProperty("password_hash")
     private String passwordHash;
 
+    @JsonProperty("status_in_db")
+    private String statusInDb;
+
     public Long getCustomerPk() {
         return customerPk;
     }
@@ -85,5 +88,13 @@ public class CustomerDTO extends DtoHolder {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public String getStatusInDb() {
+        return statusInDb;
+    }
+
+    public void setStatusInDb(String statusInDb) {
+        this.statusInDb = statusInDb;
     }
 }

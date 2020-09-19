@@ -5,6 +5,7 @@ import com.sda.carrent.mapper.CarMapper;
 import com.sda.carrent.model.Car;
 import com.sda.carrent.model.userTypeEnum.CarStatus;
 import com.sda.carrent.repository.CarRepository;
+import org.hibernate.validator.cfg.defs.CreditCardNumberDef;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -32,18 +33,19 @@ public class CarService {
         return carMapper.toDTO(cratedCar);
     }
 
-    public void updateCar(CarDTO carDTO) {
+    public CarDTO updateCar(CarDTO carDTO) {
         Car carToUpdate = carMapper.fromDTO(carDTO);
         Car carFromDB = carRepository.getOne(carDTO.getCarPk());
         BeanUtils.copyProperties(carToUpdate, carFromDB, "carPk");
         carRepository.save(carFromDB);
+        return carMapper.toDTO(carFromDB);
     }
 
     public List<CarDTO> getCars() {
         List<Car> cars = carRepository.findAll();
         return cars.stream()
                 .map(carMapper::toDTO)
-//                .filter(t -> "ACTIVE".equals(t.getStatus()))
+                .filter(t -> "ACTIVE".equals(t.getStatusInDb()))
                 .collect(Collectors.toList());
     }
 
@@ -59,6 +61,7 @@ public class CarService {
         List<Car> cars = carRepository.findAll(carExample);
         return cars.stream()
                 .map(carMapper::toDTO)
+                .filter(t -> "ACTIVE".equals(t.getStatusInDb()))
                 .collect(Collectors.toList());
     }
 
@@ -75,6 +78,14 @@ public class CarService {
         Car car = carRepository.findByModel(model);
         return car != null;
     }
+
+    public CarDTO setCarBookingStatusToRented(Long id) {
+        Car car = carRepository.getOne(id);
+        car.setCarStatus(CarStatus.RENTED);
+        return carMapper.toDTO(car);
+    }
+
+
 
 
 }

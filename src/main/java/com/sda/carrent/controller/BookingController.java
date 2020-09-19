@@ -17,7 +17,6 @@ public class BookingController {
     private final BookingService bookingService;
     private final ResponseMapper responseMapper;
 
-
     @Autowired
     public BookingController(BookingService bookingService, ResponseMapper responseMapper) {
         this.bookingService = bookingService;
@@ -30,7 +29,7 @@ public class BookingController {
                 .mapSuccess(bookingService.createBooking(bookingDTO));
     }
 
-    @GetMapping("/booking")
+    @GetMapping("/bookings")
     public Response getAllBookings() {
         return responseMapper
                 .mapSuccess(bookingService.getBookings());
@@ -49,8 +48,15 @@ public class BookingController {
     }
 
     @PutMapping("/booking")
-    public void updateBooking(@RequestBody BookingDTO bookingDTO) {
-        bookingService.updateBooking(bookingDTO);
+    public Response updateBooking(@RequestBody BookingDTO bookingDTO) {
+        return responseMapper
+                .mapSuccess(bookingService.updateBooking(bookingDTO));
+    }
+
+    @DeleteMapping("/booking({id})")
+    public Response deleteBooking(@PathVariable("id") Long id) {
+        return responseMapper
+                .mapSuccess(bookingService.deleteBooking(id));
     }
 
 

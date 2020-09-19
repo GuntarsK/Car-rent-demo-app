@@ -1,6 +1,7 @@
 package com.sda.carrent.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sda.carrent.service.BookingService;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,11 +19,13 @@ public class Booking {
     @Column(name = "date_of_booking")
     private Date dateOfBooking;
 
-    @Column(name = "customer_pk")
-    private Long customerPk;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_pk")
+    private Customer customer;
 
-    @Column(name = "car_pk")
-    private Long carPk;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_pk")
+    private Car car;
 
     @JsonFormat(pattern="dd.MM.yy")
     @Column(name = "date_from")
@@ -34,6 +37,9 @@ public class Booking {
 
     @Column(name = "amount")
     private Double amount;
+
+    @Column(name = "status_in_db")
+    private String statusInDb;
 
     public Long getBookingPk() {
         return bookingPk;
@@ -51,20 +57,20 @@ public class Booking {
         this.dateOfBooking = dateOfBooking;
     }
 
-    public Long getCustomerPk() {
-        return customerPk;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerPk(Long customerPk) {
-        this.customerPk = customerPk;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public Long getCarPk() {
-        return carPk;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCarPk(Long carPk) {
-        this.carPk = carPk;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     public Date getDateFrom() {
@@ -91,16 +97,25 @@ public class Booking {
         this.amount = amount;
     }
 
+    public String getStatusInDb() {
+        return statusInDb;
+    }
+
+    public void setStatusInDb(String statusInDb) {
+        this.statusInDb = statusInDb;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
                 "bookingPk=" + bookingPk +
                 ", dateOfBooking=" + dateOfBooking +
-                ", customerPk=" + customerPk +
-                ", carPk=" + carPk +
+                ", customer=" + customer +
+                ", car=" + car +
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
                 ", amount=" + amount +
+                ", statusInDb='" + statusInDb + '\'' +
                 '}';
     }
 }

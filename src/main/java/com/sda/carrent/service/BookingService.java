@@ -3,7 +3,10 @@ package com.sda.carrent.service;
 import com.sda.carrent.dto.BookingDTO;
 import com.sda.carrent.mapper.BookingMapper;
 import com.sda.carrent.model.Booking;
+import com.sda.carrent.model.Car;
+import com.sda.carrent.model.userTypeEnum.CarStatus;
 import com.sda.carrent.repository.BookingRepository;
+import com.sda.carrent.repository.CarRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -18,15 +21,26 @@ public class BookingService {
 
     private final BookingRepository bookingRepository;
     private final BookingMapper bookingMapper;
+    private final CarService carService;
+    private final CarRepository carRepository;
 
     @Autowired
-    public BookingService(BookingRepository bookingRepository, BookingMapper bookingMapper) {
+    public BookingService(BookingRepository bookingRepository, BookingMapper bookingMapper, CarService carService, CarRepository carRepository) {
         this.bookingRepository = bookingRepository;
         this.bookingMapper = bookingMapper;
+        this.carService = carService;
+        this.carRepository = carRepository;
     }
 
-    public BookingDTO createBooking(BookingDTO reservationDTO) {
-        Booking booking = bookingMapper.fromDTO(reservationDTO);
+    public BookingDTO createBooking(BookingDTO bookingDTO) {
+        // new lines
+        Car carToUpdate = new Car();
+        Car carFromDB = carRepository.getOne(bookingDTO.getCarPk());
+        carFromDB.setCarStatus(CarStatus.RENTED);
+//        carService.setCarBookingStatusToRented(bookingDTO.getCarPk());
+        carRepository.save(carFromDB);
+
+        Booking booking = bookingMapper.fromDTO(bookingDTO);
         Booking createdBooking = bookingRepository.save(booking);
         return bookingMapper.toDTO(createdBooking);
     }
@@ -44,11 +58,12 @@ public class BookingService {
         return bookingMapper.toDTO(booking);
     }
 
-    public void updateBooking(BookingDTO bookingDTO) {
+    public BookingDTO updateBooking(BookingDTO bookingDTO) {
         Booking bookingToUpdate = bookingMapper.fromDTO(bookingDTO);
         Booking bookingFromDB = bookingRepository.getOne(bookingDTO.getBookingPk());
         BeanUtils.copyProperties(bookingToUpdate, bookingFromDB, "bookingPk");
         bookingRepository.save(bookingFromDB);
+        return bookingMapper.toDTO(bookingFromDB);
     }
 
     public List<BookingDTO> search(BookingDTO bookingDTO) {
@@ -60,6 +75,13 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
+    public BookingDTO deleteBooking(Long id) {
+        Booking booking = bookingRepository.getOne(id);
+        booking.setStatusInDb("DELETED");
+        bookingMapper.toDTO(booking);
+        Booking deletedBooking = bookingRepository.save(booking);
+        return bookingMapper.toDTO(deletedBooking);
+    }
 
 
 }

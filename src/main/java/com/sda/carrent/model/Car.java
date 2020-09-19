@@ -4,6 +4,8 @@ import com.sda.carrent.model.userTypeEnum.CarBodyType;
 import com.sda.carrent.model.userTypeEnum.CarStatus;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Car {
@@ -38,6 +40,9 @@ public class Car {
 
     @Column(name = "status_in_db")
     private String statusInDb;
+
+    @OneToOne(mappedBy = "car")
+    private Booking booking;
 
     public Long getCarPk() {
         return carPk;
@@ -87,14 +92,6 @@ public class Car {
         this.mileage = mileage;
     }
 
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
     public CarStatus getCarStatus() {
         return carStatus;
     }
@@ -103,12 +100,28 @@ public class Car {
         this.carStatus = carStatus;
     }
 
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
     public String getStatusInDb() {
         return statusInDb;
     }
 
     public void setStatusInDb(String statusInDb) {
         this.statusInDb = statusInDb;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 
     @Override
@@ -123,6 +136,7 @@ public class Car {
                 ", carStatus=" + carStatus +
                 ", amount=" + amount +
                 ", statusInDb='" + statusInDb + '\'' +
+                ", booking=" + booking +
                 '}';
     }
 }

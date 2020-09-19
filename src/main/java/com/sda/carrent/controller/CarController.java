@@ -45,8 +45,9 @@ public class CarController {
     }
 
     @PutMapping("/car")
-    public void updateCar(@RequestBody CarDTO carDTO) {
-        carService.updateCar(carDTO);
+    public Response updateCar(@RequestBody CarDTO carDTO) {
+        return responseMapper
+                .mapSuccess(carService.updateCar(carDTO));
     }
 
     @PostMapping("/cars/search")

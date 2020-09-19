@@ -31,6 +31,9 @@ public class BookingDTO extends DtoHolder {
     @JsonProperty("amount")
     private Double amount;
 
+    @JsonProperty("status_in_db")
+    private String statusInDb;
+
     public Long getBookingPk() {
         return bookingPk;
     }
@@ -85,5 +88,13 @@ public class BookingDTO extends DtoHolder {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public String getStatusInDb() {
+        return statusInDb;
+    }
+
+    public void setStatusInDb(String statusInDb) {
+        this.statusInDb = statusInDb;
     }
 }

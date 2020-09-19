@@ -45,8 +45,9 @@ public class CustomerController {
     }
 
     @PutMapping("/customer")
-    public void updateCustomer(@RequestBody CustomerDTO customerDTO) {
-        customerService.updateCustomer(customerDTO);
+    public Response updateCustomer(@RequestBody CustomerDTO customerDTO) {
+        return responseMapper
+                .mapSuccess(customerService.updateCustomer(customerDTO));
     }
 
     @PostMapping("/customers/search")

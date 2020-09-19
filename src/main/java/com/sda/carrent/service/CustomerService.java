@@ -31,17 +31,19 @@ public class CustomerService {
         return customerMapper.toDTO(createdCustomer);
     }
 
-    public void updateCustomer(CustomerDTO customerDTO) {
+    public CustomerDTO updateCustomer(CustomerDTO customerDTO) {
         Customer customerToUpdate = customerMapper.fromDTO(customerDTO);
         Customer customerFromDB = customerRepository.getOne(customerDTO.getCustomerPk());
         BeanUtils.copyProperties(customerToUpdate, customerFromDB, "customerPk");
         customerRepository.save(customerFromDB);
+        return customerMapper.toDTO(customerFromDB);
     }
 
     public List<CustomerDTO> getCustomers() {
         List<Customer> customers = customerRepository.findAll();
         return customers.stream()
                 .map(customerMapper::toDTO)
+                .filter(t -> "ACTIVE".equals(t.getStatusInDb()))
                 .collect(Collectors.toList());
     }
 
@@ -57,6 +59,7 @@ public class CustomerService {
         List<Customer> customers = customerRepository.findAll(customerExample);
         return customers.stream()
                 .map(customerMapper::toDTO)
+                .filter(t -> "ACTIVE".equals(t.getStatusInDb()))
                 .collect(Collectors.toList());
     }
 
@@ -67,7 +70,7 @@ public class CustomerService {
 
     public CustomerDTO deleteCustomer(Long id) {
         Customer customer = customerRepository.getOne(id);
-        customer.setStatus("DELETED");
+        customer.setStatusInDb("DELETED");
         customerMapper.toDTO(customer);
         Customer deletedCustomer = customerRepository.save(customer);
         return customerMapper.toDTO(deletedCustomer);

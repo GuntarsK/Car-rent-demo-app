@@ -1,6 +1,8 @@
 package com.sda.carrent.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "customer")
@@ -29,8 +31,11 @@ public class Customer {
     @Column(name = "password_hash")
     private String passwordHash;
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "status_in_db")
+    private String statusInDb;
+
+    @OneToMany(mappedBy = "customer")
+    private Set<Booking> bookings = new HashSet<>();
 
     public Long getCustomerPk() {
         return customerPk;
@@ -88,12 +93,20 @@ public class Customer {
         this.passwordHash = passwordHash;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatusInDb() {
+        return statusInDb;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusInDb(String statusInDb) {
+        this.statusInDb = statusInDb;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     @Override
@@ -106,7 +119,8 @@ public class Customer {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
-                ", status='" + status + '\'' +
+                ", statusInDb='" + statusInDb + '\'' +
+                ", bookings=" + bookings +
                 '}';
     }
 }

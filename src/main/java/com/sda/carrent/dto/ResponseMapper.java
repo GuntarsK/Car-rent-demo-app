@@ -31,7 +31,7 @@ public class ResponseMapper {
         Response response = new Response();
 
         response.setDate(new Date());
-        response.setResult("FAIL");
+        response.setResult("ERROR");
         response.setMessage(message);
         response.setErrorType(errorType);
         return response;
