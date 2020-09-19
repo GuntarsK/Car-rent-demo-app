@@ -16,10 +16,10 @@ INSERT INTO car (make, model, car_body_type, year_of_production, mileage, amount
 ('Audi', 'A4', 'SEDAN', 2019, 46050, 100.00),
 ('Renault', 'Trafic', 'VAN', 2016, 145029, 58.00),
 ('BMW', 'X3', 'SUV', 2018, 116023, 73.00),
-('KIA', 'Sportage', 'SUV', 2017, 128312, 47.00);
-('BMW', '320', 'SEDAN', 2019, 33054, 95.00);
-('Audi', 'A6', 'SEDAN', 2016, 58312, 88.00);
-('Volvo', 'XC90', 'SUV', 2018, 60312, 109.00);
+('KIA', 'Sportage', 'SUV', 2017, 128312, 47.00),
+('BMW', '320', 'SEDAN', 2019, 33054, 95.00),
+('Audi', 'A6', 'SEDAN', 2016, 58312, 88.00),
+('Volvo', 'XC90', 'SUV', 2018, 60312, 109.00),
 ('Volvo', 'XC60', 'SUV', 2019, 25312, 94.00);
 
 
