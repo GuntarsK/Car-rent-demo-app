@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS customer (
     phone_number VARCHAR(20) NOT NULL,
     address VARCHAR(100) NOT NULL,
     password_hash VARCHAR(250) NOT NULL,
-    status VARCHAR(10) DEFAULT 'ACTIVE'
+    status_in_db VARCHAR(10) DEFAULT 'ACTIVE'
 );
 
 INSERT INTO customer (first_name, last_name, email, phone_number, address, password_hash) VALUES
@@ -14,4 +14,6 @@ INSERT INTO customer (first_name, last_name, email, phone_number, address, passw
 ('Jane', 'Smith', 'jane.smith@mail.com', '+371 50001000', '8 Atlantic St. Wheeling, WV 26003', '00000'),
 ('David', 'Jones', 'david.jones@mail.com', '+371 40002000', '9 Cactus Ave. Saint Louis, MO 63109', '00000'),
 ('Mike', 'Carlos', 'mike.carlos@mail.com', '+371 60008000', '9313 Grandrose Road Griffin, GA 30223', '00000'),
-('Bod', 'Smith', 'bob.smith@mail.com','+371 90004000', '8124 Roehampton Lane Conway, SC 29526', '00000');
+('Bob', 'Smith', 'bob.smith@mail.com','+371 90004000', '8124 Roehampton Lane Conway, SC 29526', '00000'),
+('Carl', 'Brown', 'carl.brown@mail.com','+371 90304003', '634 Freedom avenue, FL 19526', '00000'),
+('Frederik', 'Green', 'frederik.greenn@mail.com','+371 90344808', '20 Agave road, SC 23426', '00000');
