@@ -1,7 +1,36 @@
-***Development work in progress***
+### Back-end for Car Rental app
 
-Simple Spring Boot app with basic CRUD operations.
-Works with H2 in-memory database.
-REST API requests can be submitted via Swagger.
+Back-end part of Car Rental app. Spring Boot demo project with CRUD operations.
 
-Fronted part available here: https://github.com/GuntarsK/Car-rent-frontend
+Front-end available in a separate repository: https://github.com/GuntarsK/Car-rent-frontend.git
+
+
+
+### Clone `Car-Rent-Demo-App`
+
+Clone the `Car-Rent-Demo-App` repository using git:
+
+```
+git https://github.com/GuntarsK/Car-Rent-Demo-App.git
+cd Car-Rent-Demo-App
+```
+
+
+
+### Run the Application
+
+After starting the application:
+
+* Access H2 in-memory database console: http://localhost:8080/h2-console/login.do
+
+  JDBC URL: `jdbc:h2:mem:testdb`
+  
+  User Name: `sa`
+
+  Password: `password`
+  
+
+* Swagger UI to test REST API requests: http://localhost:8080/swagger-ui.html
+
+
+
