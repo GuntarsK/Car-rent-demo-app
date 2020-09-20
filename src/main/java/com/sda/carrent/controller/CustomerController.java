@@ -58,8 +58,12 @@ public class CustomerController {
 
     @DeleteMapping("/customer({id})")
     public Response deleteCustomer(@PathVariable("id") Long id) {
+        if (customerService.doesCustomerHasBookings(id) == true) {
+            return responseMapper
+                    .mapFail("Can't delete customer. Check bookings.", "ERROR");
+        }
         return responseMapper
-                .mapSuccess(customerService.deleteCustomer(id));
+                    .mapSuccess(customerService.deleteCustomer(id));
     }
 
 

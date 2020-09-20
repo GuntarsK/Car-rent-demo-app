@@ -30,7 +30,6 @@ public class BookingMapper {
         booking.setCar(car);
         booking.setDateFrom(bookingDTO.getDateFrom());
         booking.setDateTo(bookingDTO.getDateTo());
-        booking.setAmount(bookingDTO.getAmount());
         booking.setStatusInDb(bookingDTO.getStatusInDb());
 
         return booking;

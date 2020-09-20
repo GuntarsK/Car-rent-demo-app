@@ -10,7 +10,7 @@ public class BookingDTO extends DtoHolder {
     @JsonProperty("booking_pk")
     private Long bookingPk;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @JsonProperty("date_of_booking")
     private Date dateOfBooking;
 
@@ -20,11 +20,11 @@ public class BookingDTO extends DtoHolder {
     @JsonProperty("car_pk")
     private Long carPk;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @JsonProperty("date_from")
     private Date dateFrom;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @JsonProperty("date_to")
     private Date dateTo;
 

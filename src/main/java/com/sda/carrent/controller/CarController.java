@@ -25,9 +25,6 @@ public class CarController {
 
     @PostMapping("/car")
     public Response createCar(@Valid @RequestBody CarDTO carDTO) {
-//        if (carService.doesModelExist(carDTO.getModel())) {
-//            return responseMapper.mapFail("Car model: " + carDTO.getModel() + " already exists", "WARNING");
-//        }
         return responseMapper
                 .mapSuccess(carService.createCar(carDTO));
     }
@@ -58,8 +55,14 @@ public class CarController {
 
     @DeleteMapping("/car({id})")
     public Response deleteCar(@PathVariable("id") Long id) {
+        if (carService.isCarBooked(id) == true) {
+            return responseMapper
+                    .mapFail("Can't delete car. Check active bookings.", "ERROR");
+        }
         return responseMapper
-                .mapSuccess(carService.deleteCar(id));
+                    .mapSuccess(carService.deleteCar(id));
     }
 
+
 }
+

@@ -3,6 +3,7 @@ package com.sda.carrent.service;
 import com.sda.carrent.dto.CarDTO;
 import com.sda.carrent.mapper.CarMapper;
 import com.sda.carrent.model.Car;
+import com.sda.carrent.model.Customer;
 import com.sda.carrent.model.userTypeEnum.CarStatus;
 import com.sda.carrent.repository.CarRepository;
 import org.hibernate.validator.cfg.defs.CreditCardNumberDef;
@@ -74,17 +75,19 @@ public class CarService {
 
     }
 
-    public Boolean doesModelExist(String model) {
-        Car car = carRepository.findByModel(model);
-        return car != null;
-    }
-
     public CarDTO setCarBookingStatusToRented(Long id) {
         Car car = carRepository.getOne(id);
         car.setCarStatus(CarStatus.RENTED);
         return carMapper.toDTO(car);
     }
 
+    public Boolean isCarBooked(Long id) {
+        Car car = carRepository.getOne(id);
+        if (car.getCarStatus().equals(CarStatus.RENTED)) {
+            return true;
+        }
+        return false;
+    }
 
 
 

@@ -76,4 +76,12 @@ public class CustomerService {
         return customerMapper.toDTO(deletedCustomer);
     }
 
+    public Boolean doesCustomerHasBookings(Long id) {
+        Customer customer = customerRepository.getOne(id);
+        if (customer.getBookings().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
 }

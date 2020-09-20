@@ -41,8 +41,8 @@ public class Car {
     @Column(name = "status_in_db")
     private String statusInDb;
 
-    @OneToOne(mappedBy = "car")
-    private Booking booking;
+    @OneToMany(mappedBy = "car")
+    private Set<Booking> bookings = new HashSet<>();
 
     public Long getCarPk() {
         return carPk;
@@ -116,12 +116,12 @@ public class Car {
         this.statusInDb = statusInDb;
     }
 
-    public Booking getBooking() {
-        return booking;
+    public Set<Booking> getBookings() {
+        return bookings;
     }
 
-    public void setBooking(Booking booking) {
-        this.booking = booking;
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     @Override
@@ -136,7 +136,7 @@ public class Car {
                 ", carStatus=" + carStatus +
                 ", amount=" + amount +
                 ", statusInDb='" + statusInDb + '\'' +
-                ", booking=" + booking +
+                ", bookings=" + bookings +
                 '}';
     }
 }

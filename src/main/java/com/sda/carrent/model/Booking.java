@@ -15,7 +15,7 @@ public class Booking {
     @Column(name = "booking_pk")
     private Long bookingPk;
 
-    @JsonFormat(pattern="dd.MM.yy")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     @Column(name = "date_of_booking")
     private Date dateOfBooking;
 
@@ -23,15 +23,15 @@ public class Booking {
     @JoinColumn(name = "customer_pk")
     private Customer customer;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_pk")
     private Car car;
 
-    @JsonFormat(pattern="dd.MM.yy")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     @Column(name = "date_from")
     private Date dateFrom;
 
-    @JsonFormat(pattern="dd.MM.yy")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     @Column(name = "date_to")
     private Date dateTo;
 
