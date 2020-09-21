@@ -1,6 +1,6 @@
 ### Back-end for Car Rental app
 
-Back-end part of Car Rental app. Spring Boot demo project with CRUD operations.
+Back-end part of Car Rental app. Spring Boot demo project with CRUD operations:
 
 Front-end available in a separate repository: https://github.com/GuntarsK/Car-rent-frontend.git
 
@@ -30,6 +30,19 @@ After starting the application:
   
 
 * Swagger UI to test REST API requests: http://localhost:8080/swagger-ui.html
+
+
+### Functionality
+
+  * Get Car/Customer/Booking records from DB
+  
+  * Create new Car/Customer/Booking record in DB
+  
+  * Update existing Car/Customer/Booking information
+  
+  * Delete Car/Customer/Booking
+  
+  * Search for a Car/Customer/Booking
 
 
 
