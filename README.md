@@ -1,6 +1,6 @@
 ### Back-end for Car Rental app
 
-Back-end part of Car Rental app. Spring Boot demo project with CRUD operations:
+Back-end part of Car Rental app. Spring Boot demo project with CRUD operations.
 
 Front-end available in a separate repository: https://github.com/GuntarsK/Car-rent-frontend.git
 
@@ -18,7 +18,7 @@ git https://github.com/GuntarsK/Car-Rent-Demo-App.git
 
 ### Run the Application
 
-After starting the application:
+After starting the application, it's functions can be tested in a following ways:
 
 * Access H2 in-memory database console: http://localhost:8080/h2-console/login.do
 
@@ -30,6 +30,8 @@ After starting the application:
   
 
 * Swagger UI to test REST API requests: http://localhost:8080/swagger-ui.html
+
+* Clone and launch front-end part of the app. Project is located in a separate repository: https://github.com/GuntarsK/Car-rent-frontend.git 
 
 
 ### Functionality
