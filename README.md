@@ -1,10 +1,12 @@
-### Back-end for Car Rental app
+## Car Rental app
 
-Back-end part of Car Rental app. Spring Boot demo project with CRUD operations.
+This is a back-end part of a demo app that allows to perform CRUD operations through a simple web intefrace.
 
-Front-end available in a separate repository: https://github.com/GuntarsK/Car-rent-frontend.git
+Front-end code for this app is placed in a separate repository: https://github.com/GuntarsK/Car-rent-frontend.git
 
 
+
+## Getting started
 
 ### Clone `Car-Rent-Demo-App`
 
