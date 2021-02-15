@@ -11,7 +11,7 @@ Front-end available in a separate repository: https://github.com/GuntarsK/Car-re
 Clone the `Car-Rent-Demo-App` repository using git:
 
 ```
-git https://github.com/GuntarsK/Car-Rent-Demo-App.git
+git clone https://github.com/GuntarsK/Car-Rent-Demo-App.git
 ```
 
 
